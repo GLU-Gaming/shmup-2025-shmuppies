@@ -36,11 +36,6 @@ public class PlayerMovement : MonoBehaviour
             playerSpeed = baseSpeed; // Reset speed
         }
 
-        // Toggle movement on spacebar press
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            isMoving = !isMoving;
-        }
     }
 
     void LeftRightMovement()
