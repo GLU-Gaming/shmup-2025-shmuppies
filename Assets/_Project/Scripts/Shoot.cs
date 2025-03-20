@@ -5,19 +5,24 @@ public class Shoot : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bullet;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float fireRate;
+    public float fireTime;
+  
     void Start()
     {
-       
+       fireTime = fireRate;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        fireTime -= Time.deltaTime;
+        
+
+        if (Input.GetKeyDown(KeyCode.Space)&& fireTime <=0)
         {
             Shoot();
+            fireTime = fireRate;
         }
 
         void Shoot()
