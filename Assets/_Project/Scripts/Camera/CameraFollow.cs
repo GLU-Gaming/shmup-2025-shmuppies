@@ -41,7 +41,5 @@ public class CameraFollow : MonoBehaviour
         // Smoothly move the camera to the desired position using SmoothDamp
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothSpeed);
 
-        // Optional: Camera looks at the player
-        transform.LookAt(player.transform);
     }
 }

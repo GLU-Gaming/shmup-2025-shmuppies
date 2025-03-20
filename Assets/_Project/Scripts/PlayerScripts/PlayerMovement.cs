@@ -6,49 +6,47 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
 
     [Header("Player Stats")]
-    private float baseSpeed; // Speed of the player at the start of the game
     public float playerSpeed = 4f; // Player's speed stat
-    public float focusSlowdown = 2f; // How much player slows down
-
-    private bool isMoving = false; // For testing
+    public float turnSpeed = 5f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); // Automatically grabs Rigidbody on gameObject for reference
-        baseSpeed = playerSpeed; // Store initial speed
     }
 
     private void FixedUpdate()
     {
-        LeftRightMovement();
         MoveForward();
-    }
-
-    private void Update()
-    {
-        // Slow down when holding Mouse0, return to normal when released
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            playerSpeed = baseSpeed / 2; // Apply slowdown
-        }
-        else
-        {
-            playerSpeed = baseSpeed; // Reset speed
-        }
-
-    }
-
-    void LeftRightMovement()
-    {
-        float moveX = Input.GetAxis("Horizontal") * playerSpeed;
-        rb.linearVelocity = new Vector3(moveX, rb.linearVelocity.y, rb.linearVelocity.z);
+        Steering();
     }
 
     void MoveForward()
     {
-        if (isMoving)
+        if (Input.GetKey(KeyCode.W))
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, playerSpeed);
+            rb.linearVelocity = transform.forward * playerSpeed;
         }
+        else
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0); // Stop forward movement when W is not pressed
+        }
+    }
+
+    void Steering()
+    {
+        float rotationInput = 0f;
+
+        // Check if A or D is pressed
+        if (Input.GetKey(KeyCode.A))
+        {
+            rotationInput = 1f; // Rotate counterclockwise (left)
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            rotationInput = -1f; // Rotate clockwise (right)
+        }
+
+        // Apply rotation to the object
+        transform.Rotate(0, rotationInput * turnSpeed * Time.deltaTime, 0); // Rotate around the Y-axis
     }
 }
