@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    public Transform firePoint;
+    public Transform[] firePoint;
     public GameObject bullet;
     public float fireRate;
     public float fireTime;
@@ -27,7 +27,11 @@ public class Shoot : MonoBehaviour
 
         void Shoot()
         {
-            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            for (int i = 0; i < firePoint.Length; i++)
+            {
+                Instantiate(bullet, firePoint[i].position, firePoint[i].rotation);
+            }
+
         }
     }
 }
