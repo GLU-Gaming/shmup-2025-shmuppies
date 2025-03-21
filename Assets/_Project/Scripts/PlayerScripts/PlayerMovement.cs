@@ -6,8 +6,16 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
 
     [Header("Player Stats")]
-    public float playerSpeed = 4f; // Player's speed stat
-    public float turnSpeed = 5f;
+    public float playerSpeed = 4f;   // Max forward speed
+    public float acceleration = 10f; // Speed up rate
+    public float deceleration = 8f;  // Slow down rate
+
+    public float turnSpeed = 100f;   // Max rotation speed
+    public float turnAcceleration = 200f; // Rotation acceleration
+    public float turnDeceleration = 150f; // Rotation deceleration
+
+    private float currentSpeed = 0f; // Current forward speed
+    private float currentTurnSpeed = 0f; // Current turn speed
 
     private void Start()
     {
@@ -24,29 +32,44 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            rb.linearVelocity = transform.forward * playerSpeed;
+            // Accelerate towards max speed
+            currentSpeed = Mathf.MoveTowards(currentSpeed, playerSpeed, acceleration * Time.fixedDeltaTime);
         }
         else
         {
-            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0); // Stop forward movement when W is not pressed
+            // Decelerate to 0 when W is not pressed
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, deceleration * Time.fixedDeltaTime);
         }
+
+        // Apply velocity
+        rb.linearVelocity = transform.forward * currentSpeed;
     }
 
     void Steering()
     {
         float rotationInput = 0f;
 
-        // Check if A or D is pressed
         if (Input.GetKey(KeyCode.A))
         {
-            rotationInput = 1f; // Rotate counterclockwise (left)
+            rotationInput = -1f; // Rotate left
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            rotationInput = -1f; // Rotate clockwise (right)
+            rotationInput = 1f; // Rotate right
         }
 
-        // Apply rotation to the object
-        transform.Rotate(0, rotationInput * turnSpeed * Time.deltaTime, 0); // Rotate around the Y-axis
+        if (rotationInput != 0)
+        {
+            // Apply turn acceleration
+            currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, rotationInput * turnSpeed, turnAcceleration * Time.fixedDeltaTime);
+        }
+        else
+        {
+            // Apply turn deceleration when no key is pressed
+            currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, 0f, turnDeceleration * Time.fixedDeltaTime);
+        }
+
+        // Apply smooth rotation
+        transform.Rotate(0, currentTurnSpeed * Time.fixedDeltaTime, 0);
     }
 }
