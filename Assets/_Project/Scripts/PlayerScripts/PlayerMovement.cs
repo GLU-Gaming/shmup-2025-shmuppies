@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply velocity
         rb.linearVelocity = transform.forward * currentSpeed;
-    }
+    } //
 
     void Steering()
     {

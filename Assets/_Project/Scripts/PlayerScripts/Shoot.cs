@@ -32,6 +32,6 @@ public class Shoot : MonoBehaviour
                 Instantiate(bullet, firePoint[i].position, firePoint[i].rotation);
             }
 
-        }
+        } //
     }
 }
