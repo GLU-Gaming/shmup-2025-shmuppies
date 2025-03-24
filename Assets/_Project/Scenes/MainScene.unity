@@ -164,21 +164,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 390317574}
-<<<<<<< HEAD
   playerSpeed: 20
   acceleration: 20
   deceleration: 12
   turnSpeed: 100
   turnAcceleration: 200
   turnDeceleration: 250
-=======
-  playerSpeed: 10
-  acceleration: 10
-  deceleration: 8
-  turnSpeed: 100
-  turnAcceleration: 200
-  turnDeceleration: 150
->>>>>>> baa5d2ea78e06458b528b8a39264c00c35fa4256
 --- !u!65 &390317576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -198,10 +189,6 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-<<<<<<< HEAD
-  m_Size: {x: 1.7008004, y: 1.9467275, z: 6.8663993}
-  m_Center: {x: -0.038488388, y: 0.1542939, z: 0.41099048}
-=======
   m_Size: {x: 1.7008004, y: 1.9467275, z: 7.4683084}
   m_Center: {x: -0.038488388, y: 0.1542939, z: 0.71194506}
 --- !u!1001 &1375058345
@@ -320,7 +307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardspeed: 4
->>>>>>> baa5d2ea78e06458b528b8a39264c00c35fa4256
 --- !u!1 &1382593165
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,8 +881,4 @@ SceneRoots:
   - {fileID: 1472043829}
   - {fileID: 1382593169}
   - {fileID: 1678788932}
-<<<<<<< HEAD
   - {fileID: 1800311678}
-=======
-  - {fileID: 1375058345}
->>>>>>> baa5d2ea78e06458b528b8a39264c00c35fa4256
