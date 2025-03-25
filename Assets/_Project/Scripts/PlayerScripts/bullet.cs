@@ -12,4 +12,5 @@ public class bullet : MonoBehaviour
         rb.linearVelocity = transform.forward * forwardSpeed;
         Destroy(gameObject, lifeTime);
     }   
+    //
 }

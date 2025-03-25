@@ -6,49 +6,70 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
 
     [Header("Player Stats")]
-    private float baseSpeed; // Speed of the player at the start of the game
-    public float playerSpeed = 4f; // Player's speed stat
-    public float focusSlowdown = 2f; // How much player slows down
+    public float playerSpeed = 4f;   // Max forward speed
+    public float acceleration = 10f; // Speed up rate
+    public float deceleration = 8f;  // Slow down rate
 
-    private bool isMoving = false; // For testing
+    public float turnSpeed = 100f;   // Max rotation speed
+    public float turnAcceleration = 200f; // Rotation acceleration
+    public float turnDeceleration = 150f; // Rotation deceleration
+
+    private float currentSpeed = 0f; // Current forward speed
+    private float currentTurnSpeed = 0f; // Current turn speed
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); // Automatically grabs Rigidbody on gameObject for reference
-        baseSpeed = playerSpeed; // Store initial speed
     }
 
     private void FixedUpdate()
     {
-        LeftRightMovement();
         MoveForward();
-    }
-
-    private void Update()
-    {
-        // Slow down when holding Mouse0, return to normal when released
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            playerSpeed = baseSpeed / 2; // Apply slowdown
-        }
-        else
-        {
-            playerSpeed = baseSpeed; // Reset speed
-        }
-
-    }
-
-    void LeftRightMovement()
-    {
-        float moveX = Input.GetAxis("Horizontal") * playerSpeed;
-        rb.linearVelocity = new Vector3(moveX, rb.linearVelocity.y, rb.linearVelocity.z);
+        Steering();
     }
 
     void MoveForward()
     {
-        if (isMoving)
+        if (Input.GetKey(KeyCode.W))
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, playerSpeed);
+            // Accelerate towards max speed
+            currentSpeed = Mathf.MoveTowards(currentSpeed, playerSpeed, acceleration * Time.fixedDeltaTime);
         }
+        else
+        {
+            // Decelerate to 0 when W is not pressed
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, deceleration * Time.fixedDeltaTime);
+        }
+
+        // Apply velocity
+        rb.linearVelocity = transform.forward * currentSpeed;
+    } //
+
+    void Steering()
+    {
+        float rotationInput = 0f;
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            rotationInput = -1f; // Rotate left
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            rotationInput = 1f; // Rotate right
+        }
+
+        if (rotationInput != 0)
+        {
+            // Apply turn acceleration
+            currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, rotationInput * turnSpeed, turnAcceleration * Time.fixedDeltaTime);
+        }
+        else
+        {
+            // Apply turn deceleration when no key is pressed
+            currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, 0f, turnDeceleration * Time.fixedDeltaTime);
+        }
+
+        // Apply smooth rotation
+        transform.Rotate(0, currentTurnSpeed * Time.fixedDeltaTime, 0);
     }
 }
