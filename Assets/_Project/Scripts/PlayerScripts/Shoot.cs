@@ -1,37 +1,30 @@
-using UnityEditor;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    public Transform[] firePoint;
+    public Transform[] firePoints;
     public GameObject bullet;
-    public float fireRate;
-    public float fireTime;
-  
-    void Start()
-    {
-       fireTime = fireRate;
-    }
+    public float fireRate = 0.2f;
+    private float timer = 0f;
 
-    
     void Update()
     {
-        fireTime -= Time.deltaTime;
-        
+        timer += Time.deltaTime; // Accumulate time
 
-        if (Input.GetKeyDown(KeyCode.Space)&& fireTime <=0)
+        // Check if the mouse is being held down and if enough time has passed
+        if (Input.GetKey(KeyCode.Mouse0) && timer >= fireRate)
         {
-            Shoot();
-            fireTime = fireRate;
+            Fire();
+            timer = 0f; // Reset the timer after firing
         }
+    }
 
-        void Shoot()
+    void Fire()
+    {
+        // Fire from each fire point
+        foreach (Transform point in firePoints)
         {
-            for (int i = 0; i < firePoint.Length; i++)
-            {
-                Instantiate(bullet, firePoint[i].position, firePoint[i].rotation);
-            }
-
-        } //
+            Instantiate(bullet, point.position, point.rotation); // Instantiate bullet at each fire point
+        }
     }
 }

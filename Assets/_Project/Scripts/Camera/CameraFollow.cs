@@ -1,22 +1,19 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
     public GameObject player; // The player to follow
     public float smoothSpeed = 0.125f; // Speed of smoothing
-    public Vector3 offset; // Offset from the player (e.g., position of camera relative to player)
-    public float followDelay = 0.3f; // Time before camera starts moving after the player (in seconds)
+    public Vector3 offset; // Offset from the player
+    public float followDelay = 0.3f; // Time before camera starts moving after the player
 
-    private Vector3 velocity = Vector3.zero; // For smooth movement (used by SmoothDamp)
+    private Vector3 velocity = Vector3.zero;
     private float currentDelayTime = 0f;
 
     void Start()
     {
-        // Check if the player is assigned
-        if (player == null)
-        {
-            Debug.LogError("Player not assigned!");
-        }
+        player = GameObject.FindWithTag("Player");
     }
 
     void Update()
@@ -27,7 +24,6 @@ public class CameraFollow : MonoBehaviour
 
             if (currentDelayTime >= followDelay)
             {
-                // After the delay, make the camera follow the player smoothly
                 FollowPlayer();
             }
         }
@@ -35,12 +31,17 @@ public class CameraFollow : MonoBehaviour
 
     void FollowPlayer()
     {
-        // Get the target position (player position + offset)
-        Vector3 desiredPosition = player.transform.position + offset;
+        // Rotate the offset based on the player's rotation
+        Vector3 rotatedOffset = player.transform.rotation * offset;
 
-        // Smoothly move the camera to the desired position using SmoothDamp
+        // Get the new desired position
+        Vector3 desiredPosition = player.transform.position + rotatedOffset;
+
+        // Smoothly move the camera to the new position
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothSpeed);
 
+        // Make the camera look at the player
+        transform.LookAt(player.transform);
     }
-    //
 }
+

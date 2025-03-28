@@ -1,14 +1,21 @@
 using UnityEngine;
 
-public class enemymovement : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour
 {
     public GameObject player;
-   
-    private Rigidbody rb;
+
+    [Header("References")]
+    public Rigidbody rb;
+
+    [Header("Stats")]
     public float speed = 4f;
+
+    [Header("XP")]
+    public float xpDropped = 25f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player");
         
     }
 
