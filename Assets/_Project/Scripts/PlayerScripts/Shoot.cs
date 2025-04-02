@@ -9,22 +9,22 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime; // Accumulate time
+        timer += Time.deltaTime; 
 
-        // Check if the mouse is being held down and if enough time has passed
+
         if (Input.GetKey(KeyCode.Mouse0) && timer >= fireRate)
         {
             Fire();
-            timer = 0f; // Reset the timer after firing
+            timer = 0f; 
         }
     }
 
     void Fire()
     {
-        // Fire from each fire point
+        
         foreach (Transform point in firePoints)
         {
-            Instantiate(bullet, point.position, point.rotation); // Instantiate bullet at each fire point
+            Instantiate(bullet, point.position, point.rotation); 
         }
     }
 }
