@@ -122,8 +122,6 @@ Transform:
   m_Children:
   - {fileID: 4623611132065207538}
   - {fileID: 3251109013697781438}
-  - {fileID: 2308496261602707720}
-  - {fileID: 1755016514780308978}
   - {fileID: 4920866533756764228}
   - {fileID: 6128456672985952282}
   - {fileID: 7779215731912239030}
@@ -209,8 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoints:
-  - {fileID: 2308496261602707720}
-  - {fileID: 1755016514780308978}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 4920866533756764228}
   - {fileID: 6128456672985952282}
   bullet: {fileID: 667806984061553371, guid: 1c6b679c0b474f448932f6ca93b644cd, type: 3}
@@ -291,7 +289,7 @@ Transform:
   m_GameObject: {fileID: 6519250404536045364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -309,7 +307,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.71186787, b: 0.48867923, a: 1}
   m_Intensity: 1.97
-  m_Range: 10
+  m_Range: 1.43
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -385,68 +383,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &6759056648445227217
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1755016514780308978}
-  m_Layer: 3
-  m_Name: FirePoint (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1755016514780308978
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6759056648445227217}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.6427877, z: -0, w: -0.7660444}
-  m_LocalPosition: {x: -1.4799999, y: 0.45300004, z: -0.59}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 421776488727023610}
-  m_LocalEulerAnglesHint: {x: 0, y: 280, z: 0}
---- !u!1 &7969307843494964843
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2308496261602707720}
-  m_Layer: 3
-  m_Name: FirePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2308496261602707720
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969307843494964843}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7933534, z: 0, w: 0.6087614}
-  m_LocalPosition: {x: 1.73, y: 0.453, z: -0.59}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 421776488727023610}
-  m_LocalEulerAnglesHint: {x: 0, y: 105, z: 0}
 --- !u!1 &8677265349667743352
 GameObject:
   m_ObjectHideFlags: 0
