@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
             cameraOffsets = new Vector3[]
             {
                 new Vector3(0, 20, -15), // Default
-                new Vector3(0, 20, -2),  // Top-down
+                new Vector3(0, 35, -2),  // Top-down
                 new Vector3(0, 15, -25)  // Front View
             };
         }

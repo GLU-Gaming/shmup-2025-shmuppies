@@ -1,0 +1,47 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class EnemyHealthBar : MonoBehaviour
+{
+    public Image healthBarFill;
+    public Canvas healthCanvas;
+
+    private Transform enemy;
+    private Camera mainCamera;
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+        enemy = transform.parent; // Assumes this script is attached to a child UI Canvas
+        Hide(); // Hide on start
+    }
+
+    private void LateUpdate()
+    {
+        if (enemy != null)
+        {
+            // Position the health bar above the enemy
+            transform.position = enemy.position + new Vector3(0, 2f, 0);
+
+            // Set the health bar's rotation to face the camera's position
+            Vector3 directionToCamera = mainCamera.transform.position - transform.position;
+            directionToCamera.y = 0; // Prevent tilting in the vertical axis
+            transform.rotation = Quaternion.LookRotation(directionToCamera);
+        }
+    }
+
+    public void SetHealthBar(float currentHealth, float maxHealth)
+    {
+        healthBarFill.fillAmount = currentHealth / maxHealth;
+    }
+
+    public void Show()
+    {
+        healthCanvas.enabled = true;
+    }
+
+    public void Hide()
+    {
+        healthCanvas.enabled = false;
+    }
+}

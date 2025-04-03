@@ -1,59 +1,104 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Health : MonoBehaviour
 {
     public float currentHealth;
     public float maxHealth = 100f;
     public float healthRegen = 1f;
-    public GameObject player;
-    public EnemyBehaviour enemyScript;
-    public EnemySpawner spawnerScript;
-    void Start()
+    private EnemySpawner spawnerScript;
+
+    [Header("Health Bar UI")]
+    public EnemyHealthBar healthBar; // Reference to UI script
+
+    public static event Action OnHealthChanged;
+
+    private void Start()
     {
         currentHealth = maxHealth;
-        player = GameObject.FindWithTag("Player");
-        enemyScript = GameObject.FindWithTag("Enemy").GetComponent<EnemyBehaviour>();
-        spawnerScript = FindFirstObjectByType<EnemySpawner>();
+        healthBar?.SetHealthBar(currentHealth, maxHealth); // Initialize bar
+
+        if (CompareTag("Enemy"))
+        {
+            spawnerScript = FindFirstObjectByType<EnemySpawner>();
+            if (healthBar != null)
+            {
+                healthBar.Hide(); // Hide bar initially
+            }
+        }
     }
 
     private void Update()
     {
-        RegenerateHealth();
-
-        if (currentHealth >= maxHealth)
+        if (currentHealth < maxHealth)
         {
-            currentHealth = maxHealth;
+            RegenerateHealth();
         }
     }
 
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        OnHealthChanged?.Invoke();
+
+        if (healthBar != null)
+        {
+            healthBar.SetHealthBar(currentHealth, maxHealth);
+            healthBar.Show(); // Show when damaged
+        }
+
         if (currentHealth <= 0)
         {
-            EnemyDeath();
-
-            if (player.GetComponent<Health>().currentHealth <= 0)
+            if (CompareTag("Player"))
             {
                 PlayerDeath();
+            }
+            else if (CompareTag("Enemy"))
+            {
+                EnemyDeath();
             }
         }
     }
 
-    void RegenerateHealth()
+    private void RegenerateHealth()
     {
-        currentHealth += healthRegen * Time.deltaTime;
+        if (currentHealth > 0)
+        {
+            currentHealth += healthRegen * Time.deltaTime;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            OnHealthChanged?.Invoke();
+
+            if (healthBar != null)
+            {
+                healthBar.SetHealthBar(currentHealth, maxHealth);
+
+                if (currentHealth == maxHealth)
+                {
+                    healthBar.Hide(); // Hide when fully healed
+                }
+            }
+        }
     }
 
-    public void EnemyDeath()
+    private void EnemyDeath()
     {
-        XPManager.instance.AddXP(enemyScript.xpDropped);
-        spawnerScript.currentEnemyCount--;
+        EnemyBehaviour enemyScript = GetComponent<EnemyBehaviour>();
+        if (enemyScript != null)
+        {
+            XPManager.instance.AddXP(enemyScript.xpDropped);
+        }
+
+        if (spawnerScript != null)
+        {
+            spawnerScript.currentEnemyCount--;
+        }
+
         Destroy(gameObject);
     }
 
-    public void PlayerDeath()
+    private void PlayerDeath()
     {
         SceneManager.LoadScene("EndScene");
     }
