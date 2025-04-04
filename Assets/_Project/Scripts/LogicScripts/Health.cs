@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     public float currentHealth;
     public float maxHealth = 100f;
     public float healthRegen = 1f;
+
     private EnemySpawner spawnerScript;
 
     [Header("Health Bar UI")]
@@ -17,15 +18,12 @@ public class Health : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        healthBar?.SetHealthBar(currentHealth, maxHealth); // Initialize bar
+        healthBar?.SetHealthBar(currentHealth, maxHealth);
 
         if (CompareTag("Enemy"))
         {
             spawnerScript = FindFirstObjectByType<EnemySpawner>();
-            if (healthBar != null)
-            {
-                healthBar.Hide(); // Hide bar initially
-            }
+            healthBar?.Hide();
         }
     }
 
@@ -46,7 +44,7 @@ public class Health : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.SetHealthBar(currentHealth, maxHealth);
-            healthBar.Show(); // Show when damaged
+            healthBar.Show();
         }
 
         if (currentHealth <= 0)
@@ -76,7 +74,7 @@ public class Health : MonoBehaviour
 
                 if (currentHealth == maxHealth)
                 {
-                    healthBar.Hide(); // Hide when fully healed
+                    healthBar.Hide();
                 }
             }
         }
@@ -84,7 +82,7 @@ public class Health : MonoBehaviour
 
     private void EnemyDeath()
     {
-        EnemyBehaviour enemyScript = GetComponent<EnemyBehaviour>();
+        EnemyBase enemyScript = GetComponent<EnemyBase>();
         if (enemyScript != null)
         {
             XPManager.instance.AddXP(enemyScript.xpDropped);

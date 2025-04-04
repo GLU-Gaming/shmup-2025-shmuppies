@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Enemy Count")]
     public int currentEnemyCount = 0;
+    public int startMaxEnemyCount = 5;
     public int maxEnemyCount = 10;
 
     private void Start()

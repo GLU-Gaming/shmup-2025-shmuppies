@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class scor : MonoBehaviour
+public class Score : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     private int score;
