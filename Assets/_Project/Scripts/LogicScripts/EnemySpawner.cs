@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
     public Transform playerLocation;
 
     [Header("Spawn Distance")]
@@ -51,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
         }
         while (Physics.CheckSphere(spawnPosition, 1f)); // Avoid overlapping
 
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPosition, Quaternion.identity);
         currentEnemyCount++;
     }
 }

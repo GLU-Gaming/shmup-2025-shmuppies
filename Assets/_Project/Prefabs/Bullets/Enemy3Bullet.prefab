@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8157345352311137073, guid: 0614bd0d9c6196b4e80088176036efde, type: 3}
       propertyPath: m_Name
-      value: 3bullet Variant
+      value: Enemy3Bullet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -80,9 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28db6f6baef5f9042ab2d5a92d5a5e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 30
   lifeTime: 5
-  forwardSpeed: 6
+  forwardSpeed: 10
 --- !u!54 &6247193215287323705
 Rigidbody:
   m_ObjectHideFlags: 0

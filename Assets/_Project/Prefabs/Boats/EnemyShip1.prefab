@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2249897731151985249}
   m_Layer: 0
-  m_Name: firepoint
+  m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,11 +482,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 667806984061553371, guid: 309e3eceb4e101d4ebdf4196c98306c3, type: 3}
   fireRate: 3
-  firePoint: {fileID: 0}
-  detectionRange: 30
+  firePoint: {fileID: 2249897731151985249}
+  detectionRange: 100
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!114 &-597639502497316912
 MonoBehaviour:
   m_ObjectHideFlags: 0

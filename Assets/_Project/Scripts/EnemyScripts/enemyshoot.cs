@@ -1,11 +1,15 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
+    [Header("Stats")]
     public GameObject bullet;
     public float fireRate;
+
+    [Header("References")]
     public Transform firePoint;
+
+    [Header("Range")]
     public float detectionRange;
     public LayerMask playerLayer;
 

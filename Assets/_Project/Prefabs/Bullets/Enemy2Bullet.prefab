@@ -10,7 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 667806984061553371, guid: 1c6b679c0b474f448932f6ca93b644cd, type: 3}
       propertyPath: m_Name
-      value: bullet enemy 2 Variant
+      value: Enemy2Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 795142623387716523, guid: 1c6b679c0b474f448932f6ca93b644cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 795142623387716523, guid: 1c6b679c0b474f448932f6ca93b644cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 795142623387716523, guid: 1c6b679c0b474f448932f6ca93b644cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 795142623387716523, guid: 1c6b679c0b474f448932f6ca93b644cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7346475748645198879, guid: 1c6b679c0b474f448932f6ca93b644cd, type: 3}
       propertyPath: damage
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7346475748645198879, guid: 1c6b679c0b474f448932f6ca93b644cd, type: 3}
       propertyPath: forwardSpeed

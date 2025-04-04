@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 502997547854065941, guid: ed7e3bfe89c02c94cb3e6b5912f73f6d, type: 3}
       propertyPath: m_Name
-      value: boat 3 Variant
+      value: EnemyShip3
       objectReference: {fileID: 0}
     - target: {fileID: 986518349461302191, guid: ed7e3bfe89c02c94cb3e6b5912f73f6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63,6 +63,14 @@ PrefabInstance:
     - target: {fileID: 2556884667534042072, guid: ed7e3bfe89c02c94cb3e6b5912f73f6d, type: 3}
       propertyPath: playerLayer.m_Bits
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273026976960411810, guid: ed7e3bfe89c02c94cb3e6b5912f73f6d, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273026976960411810, guid: ed7e3bfe89c02c94cb3e6b5912f73f6d, type: 3}
+      propertyPath: xpDropped
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4421522648582773267, guid: ed7e3bfe89c02c94cb3e6b5912f73f6d, type: 3}
       propertyPath: m_LocalRotation.w
