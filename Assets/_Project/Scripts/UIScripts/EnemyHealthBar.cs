@@ -5,6 +5,7 @@ public class EnemyHealthBar : MonoBehaviour
 {
     public Image healthBarFill;
     public Canvas healthCanvas;
+    public GameObject healthBar;  // Health bar GameObject (Canvas)
 
     private Transform enemy;
     private Camera mainCamera;
@@ -13,6 +14,7 @@ public class EnemyHealthBar : MonoBehaviour
     {
         mainCamera = Camera.main;
         enemy = transform.parent; // Assumes this script is attached to a child UI Canvas
+        transform.SetParent(null, true); // Unparent it but keep world position
         Hide(); // Hide on start
     }
 
@@ -23,10 +25,8 @@ public class EnemyHealthBar : MonoBehaviour
             // Position the health bar above the enemy
             transform.position = enemy.position + new Vector3(0, 2f, 0);
 
-            // Set the health bar's rotation to face the camera's position
-            Vector3 directionToCamera = mainCamera.transform.position - transform.position;
-            directionToCamera.y = 0; // Prevent tilting in the vertical axis
-            transform.rotation = Quaternion.LookRotation(directionToCamera);
+            // Make the health bar face the camera
+            transform.rotation = mainCamera.transform.rotation;
         }
     }
 
