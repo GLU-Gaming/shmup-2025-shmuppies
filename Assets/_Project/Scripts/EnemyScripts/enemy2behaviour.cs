@@ -8,7 +8,7 @@ public class enemy2behaviour : MonoBehaviour
     public Rigidbody rb;
 
     [Header("Stats")]
-    public float speed = 5f;
+    public float speed = 3f;
 
     [Header("XP")]
     public float xpDropped = 25f;
@@ -17,12 +17,17 @@ public class enemy2behaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
 
+
     }
 
 
     void FixedUpdate()
     {
-        gameObject.transform.LookAt(player.transform.position, Vector3.up);
+
+
+        gameObject.transform.LookAt(player.transform.position);
+        gameObject.transform.rotation *= Quaternion.Euler(0, 0, 0);
+
         rb.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.fixedDeltaTime);
     }
 }

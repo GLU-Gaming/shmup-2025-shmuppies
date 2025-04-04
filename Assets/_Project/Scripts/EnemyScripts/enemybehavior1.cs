@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+   
     public GameObject player;
 
     [Header("References")]
@@ -16,13 +17,19 @@ public class EnemyBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
-        
+
+
     }
 
- 
+
     void FixedUpdate()
     {
-        gameObject.transform.LookAt(player.transform.position, Vector3.up);
+
+
+        gameObject.transform.LookAt(player.transform.position);
+        gameObject.transform.rotation *= Quaternion.Euler(0, 0, 0);
+
         rb.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.fixedDeltaTime);
     }
 }
+
