@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class Enemy3 : MonoBehaviour
+public class Enemy3 : EnemyBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Start();
+        speed = 3.5f;
+        xpDropped = 75f; // More XP
     }
 }
