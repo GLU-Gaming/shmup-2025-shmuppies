@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      in-game UI HP and XP_0: -3191981560574665520
+      in-game UI HP and XP_1: 4405686894828511342
+      in-game UI HP and XP_2: 9017319535537843720
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

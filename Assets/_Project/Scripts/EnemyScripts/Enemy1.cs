@@ -8,6 +8,6 @@ public class Enemy1 : EnemyBase
         base.Start();
         speed = 3.5f; 
         xpDropped = 25f; // More XP
-
+        
     }
 }
