@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 12abd51068b22ae41acb135a43a0b162
+guid: 5b7fd44a3688d4144924731a4505713c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8716522401349432975
-    second: Victory screen_0
+      213: -527701809398860588
+    second: in-game UI pause button_0
+  - first:
+      213: 5576093573954423136
+    second: in-game UI pause button_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Victory screen_0
+      name: in-game UI pause button_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 502
         y: 0
-        width: 1920
-        height: 1080
+        width: 1093
+        height: 1036
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f86fa2121fe47f870800000000000000
-      internalID: 8716522401349432975
+      spriteID: 4d4337f000a3da8f0800000000000000
+      internalID: -527701809398860588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in-game UI pause button_1
+      rect:
+        serializedVersion: 2
+        x: 1744
+        y: 724
+        width: 44
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06944e5ef83426d40800000000000000
+      internalID: 5576093573954423136
       vertices: []
       indices: 
       edges: []
@@ -134,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Victory screen_0: 8716522401349432975
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
