@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &543094966199379088
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1410535680717908080, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_Name
+      value: Victory screen ui leftside
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47.5548
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.9596
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.186028
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -6.408982e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -8.313024e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0006187113
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790438236024484554, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba07a09a15485cf45bfc6dd15b86a877, type: 3}
 --- !u!1001 &3661082916927055701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,8 +233,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e24846a087b7c6c46844ad53379a8a7f, type: 3}
+--- !u!1001 &5863887586220737682
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3879666233218177367, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_Name
+      value: Victory screen ui right side
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 50.1703
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5347
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.360008
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.0010404001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.009687481
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.999951
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0017529693
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511629698559394797, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3ae1e68335eedb47aadcffe47611aa6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 3661082916927055701}
+  - {fileID: 5863887586220737682}
+  - {fileID: 543094966199379088}
