@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using UnityEditor.Rendering.Universal;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,9 +14,13 @@ public class UIManager : MonoBehaviour
     public Image xpBar;
     public TextMeshProUGUI xpText;
     public TextMeshProUGUI levelText;
+    public GameObject upgradeMenu;
 
     private Health playerHealth;
     private XPManager playerXP;
+
+    public bool menuActive;
+    public bool pauseActive;
 
 
     private void Awake()
@@ -32,6 +38,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        menuActive = false;
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -54,4 +62,43 @@ public class UIManager : MonoBehaviour
         xpText.text = Mathf.RoundToInt(playerXP.currentXP).ToString();
         levelText.text = Mathf.RoundToInt(playerXP.level).ToString();
     }
+
+    public void ShowUpgrades()
+    {
+        menuActive = !menuActive;
+        upgradeMenu.SetActive(menuActive);
+    }
+
+    private Coroutine pauseCoroutine;
+
+    public void PauseGame()
+    {
+        pauseActive = !pauseActive;
+
+        if (pauseCoroutine != null)
+            StopCoroutine(pauseCoroutine);
+
+        pauseCoroutine = StartCoroutine(SmoothPauseTransition(pauseActive));
+    }
+
+    private IEnumerator SmoothPauseTransition(bool pause)
+    {
+        float duration = 1f;
+        float start = Time.timeScale;
+        float end = pause ? 0f : 1f;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Lerp(start, end, t / duration);
+            yield return null;
+        }
+
+        Time.timeScale = end;
+        pauseCoroutine = null;
+    }
+
+
+
 }

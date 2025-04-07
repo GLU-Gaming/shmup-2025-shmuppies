@@ -8,6 +8,8 @@ public class XPManager : MonoBehaviour
     public int level = 1;
     public float xpToNextLevel = 100;
 
+    public int skillPoints = 0;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -29,5 +31,16 @@ public class XPManager : MonoBehaviour
             xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.2f); // Increase required XP each level
             Debug.Log("Leveled up! New level: " + level);
         }
+    }
+
+    public void LevelUp()
+    {
+        level++;
+        skillPoints += 2;
+    }
+
+    public void BuyUpgrade()
+    {
+        skillPoints--;
     }
 }

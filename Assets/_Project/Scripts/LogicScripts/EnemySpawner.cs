@@ -4,6 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
     public GameObject[] enemyPrefabs;
+    public GameObject bossPrefab;
     public Transform playerLocation;
 
     [Header("Spawn Distance")]
@@ -14,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
     public int minEnemiesSpawned = 1;
     public int maxEnemiesSpawned = 3;
     public float spawnInterval = 2f;
+    public float bossCounter = 0f;
+    public float bossSpawnTime = 10f;
 
     [Header("Enemy Count")]
     public int currentEnemyCount = 0;
@@ -24,6 +27,16 @@ public class EnemySpawner : MonoBehaviour
     {
         InvokeRepeating(nameof(SpawnWave), 0f, spawnInterval);
         playerLocation = GameObject.FindWithTag("Player").GetComponent<Transform>();
+    }
+
+    private void Update()
+    {
+        bossCounter += Time.deltaTime;
+
+        if (bossCounter > bossSpawnTime)
+        {
+            Instantiate(bossPrefab, playerLocation);
+        }
     }
 
     private void SpawnWave()
