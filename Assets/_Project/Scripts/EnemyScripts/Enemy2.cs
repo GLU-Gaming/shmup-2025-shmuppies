@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy2 : EnemyBase
 {
+    [SerializeField] public GameObject score;
     protected override void Start()
     {
         base.Start();
