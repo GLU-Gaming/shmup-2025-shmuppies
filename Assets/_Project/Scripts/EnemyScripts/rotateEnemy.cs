@@ -1,27 +1,41 @@
 using UnityEngine;
 
-public class rotateEnemy : MonoBehaviour
+public class RotateEnemy : MonoBehaviour
 {
-    protected GameObject player;
+    public GameObject player;
+
     protected Rigidbody rb;
+    public Vector3 spawnPosition;
 
     [Header("Stats")]
     public float speed = 3f;
     public float xpDropped = 25f;
 
-    protected virtual void Start()
+    void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        player = GameObject.FindWithTag("Player");
+        
+        
     }
 
-    protected virtual void FixedUpdate()
+    void Update()
     {
-        if (player == null) return;
+        if (player != null)
+        {
+            
+            Vector3 targetPosition = player.transform.position;
+            targetPosition.x = transform.position.x; 
 
-        transform.LookAt(player.transform.position);
-        rb.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.fixedDeltaTime);
-        Vector3 currentRotation = transform.eulerAngles;
-        transform.eulerAngles = new Vector3(currentRotation.x, -90, currentRotation.z);
+           
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+
+          
+            Vector3 directionToPlayer = player.transform.position - transform.position;
+            directionToPlayer.x = 0; 
+
+            
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = Quaternion.Euler(-90f, targetRotation.eulerAngles.y, 0f); 
+        }
     }
 }
+
