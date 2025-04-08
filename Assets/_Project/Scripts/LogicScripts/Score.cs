@@ -1,23 +1,18 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI scoreText;
-    private int score;
+    public float score;
+    public TextMeshPro scoreText;
 
-    void Start()
+    private void Update()
     {
-        score = 0;
-        scoreText.text = "score" + score;
-    }
-
-    public void AddScore(int amount)
-    {
-        score = score + amount;
-
-        scoreText.text = "score:" + score;
+        score += Time.deltaTime;
+        score = Mathf.Round(score);
+        scoreText.text = score.ToString();
     }
 
 }

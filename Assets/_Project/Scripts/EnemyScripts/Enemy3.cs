@@ -6,7 +6,7 @@ public class Enemy3 : EnemyBase
     {
         base.Start();
         speed = 3.5f;
-        xpDropped = 75f; // More XP
+        xpDropped = 75f;
         
     }
 
@@ -15,14 +15,14 @@ public class Enemy3 : EnemyBase
     {
         if (player == null) return;
 
-        // Smooth rotation to face the player
+       
         Vector3 direction = (player.transform.position - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        // Set the x rotation to -90 while keeping the y and z rotations from LookAt
+       
         transform.rotation = Quaternion.Euler(-90f, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
 
-        // Move towards the player
+        
         rb.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.fixedDeltaTime);
     }
 
