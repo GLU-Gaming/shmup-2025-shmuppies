@@ -9,4 +9,10 @@ public class Enemy3 : EnemyBase
         xpDropped = 75f; // More XP
         
     }
+
+    private void Update()
+    {
+        Vector3 currentRotation = transform.eulerAngles;
+        transform.eulerAngles = new Vector3(currentRotation.x, -90, currentRotation.z);
+    }
 }
