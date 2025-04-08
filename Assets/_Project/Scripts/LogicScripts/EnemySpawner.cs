@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemyPrefabs;
     public GameObject bossPrefab;
     public Transform playerLocation;
+    public Transform bossSpawnPoint;
 
     [Header("Spawn Distance")]
     public float minSpawnDistance = 5f;
@@ -35,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (bossCounter > bossSpawnTime)
         {
-            Instantiate(bossPrefab, playerLocation);
+            Instantiate(bossPrefab, bossSpawnPoint);
         }
     }
 

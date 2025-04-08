@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
-using UnityEditor.Rendering.Universal;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,9 +18,14 @@ public class UIManager : MonoBehaviour
     private Health playerHealth;
     private XPManager playerXP;
 
-    public bool menuActive;
-    public bool pauseActive;
+    public GameObject player;
+    public GameObject shooter;
 
+    private PlayerMovement playerMovement;
+    private Shoot shootScript;
+
+    private bool menuActive;
+    private bool pauseActive;
 
     private void Awake()
     {
@@ -40,10 +44,24 @@ public class UIManager : MonoBehaviour
     {
         menuActive = false;
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        // Get player and shooter references
+        player = GameObject.FindGameObjectWithTag("Player");
+
         if (player != null)
         {
+            // Ensure player has all required components
+            playerMovement = player.GetComponent<PlayerMovement>();
+            shootScript = player.GetComponent<Shoot>();
             playerHealth = player.GetComponent<Health>();
+
+            // If player doesn't have necessary components, log an error
+            if (playerMovement == null || shootScript == null || playerHealth == null)
+            {
+                Debug.LogError("Player is missing necessary components: " +
+                    $"{(playerMovement == null ? "PlayerMovement " : "")}" +
+                    $"{(shootScript == null ? "Shoot " : "")}" +
+                    $"{(playerHealth == null ? "Health" : "")}");
+            }
         }
 
         playerXP = GameObject.FindWithTag("XPManager")?.GetComponent<XPManager>();
@@ -51,7 +69,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        UpdateUI();  
+        UpdateUI();
     }
 
     public void UpdateUI()
@@ -99,6 +117,73 @@ public class UIManager : MonoBehaviour
         pauseCoroutine = null;
     }
 
+    // Upgrade functions
+    public void UpgradeDamage()
+    {
+        if (shootScript != null)
+        {
+            foreach (var shoot in shootScript.GetComponentsInChildren<Shoot>())
+            {
+                var bulletPrefab = shoot.bullet.GetComponent<bullet>();
+                bulletPrefab.damage += 30f; // Increase base damage
+            }
+        }
+        else
+        {
+            Debug.LogError("Shoot script not found on player.");
+        }
+    }
 
+    public void UpgradeSpeed()
+    {
+        if (playerMovement != null)
+        {
+            playerMovement.playerSpeed += 5f;
+        }
+        else
+        {
+            Debug.LogError("PlayerMovement script not found on player.");
+        }
+    }
 
+    public void UpgradeFireRate()
+    {
+        if (shootScript != null)
+        {
+            foreach (var shoot in shootScript.GetComponentsInChildren<Shoot>())
+            {
+                shoot.fireRate = Mathf.Max(0.05f, shoot.fireRate - 0.03f); // Decrease interval to shoot faster
+            }
+        }
+        else
+        {
+            Debug.LogError("Shoot script not found on player.");
+        }
+    }
+
+    public void UpgradeHealth()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.maxHealth += 20f;
+            playerHealth.currentHealth = playerHealth.maxHealth;
+        }
+        else
+        {
+            Debug.LogError("Health script not found on player.");
+        }
+    }
+
+    public void UpgradeHealthRegen()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.healthRegen += 0.5f;
+        }
+        else
+        {
+            Debug.LogError("Health script not found on player.");
+        }
+    }
 }
+
