@@ -10,6 +10,7 @@ public class Enemy3 : EnemyBase
         
     }
 
+<<<<<<< HEAD
     protected override void FixedUpdate()
     {
         if (player == null) return;
@@ -25,4 +26,7 @@ public class Enemy3 : EnemyBase
         rb.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.fixedDeltaTime);
     }
 
+=======
+    
+>>>>>>> 87520962f65c59fb9422adc7584523c6561ef548
 }
