@@ -1,19 +1,17 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.SocialPlatforms.Impl;
 
-public class Score : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
-    public float score;
-    public TextMeshProUGUI scoreText;
+    public float score = 0f;            // Initial score
+    public TextMeshProUGUI scoreText;   // Reference to the TextMeshProUGUI component
 
-    private void Update()
+    void Update()
     {
-        score += Time.deltaTime;
-        score = Mathf.Round(score);
-        scoreText.text = score.ToString();
+        // Increment score by Time.deltaTime every frame
+        score += 10 * Time.deltaTime;
+
+        // Update the score text with the current score (formatted to 2 decimal places)
+        scoreText.text = score.ToString("F0");
     }
-
 }
-
