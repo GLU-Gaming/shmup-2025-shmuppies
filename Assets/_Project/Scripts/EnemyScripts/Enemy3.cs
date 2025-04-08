@@ -10,9 +10,5 @@ public class Enemy3 : EnemyBase
         
     }
 
-    private void Update()
-    {
-        Vector3 currentRotation = transform.eulerAngles;
-        transform.eulerAngles = new Vector3(currentRotation.x, -90, currentRotation.z);
-    }
+    
 }
