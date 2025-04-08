@@ -5,9 +5,8 @@ public class EnemyBase : MonoBehaviour
     protected GameObject player;
     protected Rigidbody rb;
 
-    [Header("Stats")]
-    public float speed = 3f;
-    public float xpDropped = 25f;
+    public float speed;
+    public float xpDropped;
 
     protected virtual void Start()
     {
