@@ -10,9 +10,19 @@ public class Enemy3 : EnemyBase
         
     }
 
-    private void Update()
+    protected override void FixedUpdate()
     {
-        Vector3 currentRotation = transform.eulerAngles;
-        transform.eulerAngles = new Vector3(currentRotation.x, -90, currentRotation.z);
+        if (player == null) return;
+
+        // Smooth rotation to face the player
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        // Set the x rotation to -90 while keeping the y and z rotations from LookAt
+        transform.rotation = Quaternion.Euler(-90f, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
+
+        // Move towards the player
+        rb.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.fixedDeltaTime);
     }
+
 }
