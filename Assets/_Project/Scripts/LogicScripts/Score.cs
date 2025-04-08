@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class Score : MonoBehaviour
 {
     public float score;
-    public TextMeshPro scoreText;
+    public TextMeshProUGUI scoreText;
 
     private void Update()
     {
