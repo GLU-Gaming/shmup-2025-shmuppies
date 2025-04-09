@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 487103819}
   - component: {fileID: 487103818}
   - component: {fileID: 487103817}
+  - component: {fileID: 487103820}
   - component: {fileID: 487103816}
   m_Layer: 5
   m_Name: Button
@@ -351,7 +352,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 487103816}
+      - m_Target: {fileID: 487103820}
         m_TargetAssemblyTypeName: button, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -401,6 +402,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487103814}
   m_CullTransparentMesh: 1
+--- !u!114 &487103820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487103814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42de8a8b294c6d049bd2b656a3e5466f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &702490116
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,6 +640,7 @@ GameObject:
   - component: {fileID: 1016849012}
   - component: {fileID: 1016849016}
   - component: {fileID: 1016849015}
+  - component: {fileID: 1016849017}
   - component: {fileID: 1016849014}
   - component: {fileID: 1016849013}
   m_Layer: 5
@@ -712,9 +726,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1016849013}
+      - m_Target: {fileID: 1016849017}
         m_TargetAssemblyTypeName: button, Assembly-CSharp
-        m_MethodName: gotogame
+        m_MethodName: GoToGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -762,6 +776,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016849011}
   m_CullTransparentMesh: 1
+--- !u!114 &1016849017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016849011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42de8a8b294c6d049bd2b656a3e5466f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1127606798
 GameObject:
   m_ObjectHideFlags: 0
