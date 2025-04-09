@@ -1,6 +1,7 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     private Rigidbody rb;
     public float damage = 10f;
@@ -9,6 +10,7 @@ public class bullet : MonoBehaviour
 
     void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         rb.linearVelocity = transform.forward * forwardSpeed;
         Destroy(gameObject, lifeTime);

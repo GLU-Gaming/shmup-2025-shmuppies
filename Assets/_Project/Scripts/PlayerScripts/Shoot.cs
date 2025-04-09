@@ -6,6 +6,7 @@ public class Shoot : MonoBehaviour
     public GameObject bullet;
     public float fireRate = 0.2f;
     private float timer = 0f;
+    public AudioSource canon;
 
     public GameObject cannonParticles;
 
@@ -29,6 +30,8 @@ public class Shoot : MonoBehaviour
             // Instantiate and store the reference to destroy it later
             GameObject spawnedParticles = Instantiate(cannonParticles, point.position, point.rotation);
             Destroy(spawnedParticles, 2f); // Correctly destroys the instantiated particles
+
+            canon.Play();
         }
     }
 }

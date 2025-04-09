@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI xpText;
     public TextMeshProUGUI levelText;
     public GameObject upgradeMenu;
+    public TextMeshProUGUI[] upgradeCounters;
+    public TextMeshProUGUI skillPointsText; // New
 
     private Health playerHealth;
     private XPManager playerXP;
@@ -32,7 +34,7 @@ public class UIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Prevent destruction on scene change
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -44,17 +46,14 @@ public class UIManager : MonoBehaviour
     {
         menuActive = false;
 
-        // Get player and shooter references
         player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
-            // Ensure player has all required components
             playerMovement = player.GetComponent<PlayerMovement>();
             shootScript = player.GetComponent<Shoot>();
             playerHealth = player.GetComponent<Health>();
 
-            // If player doesn't have necessary components, log an error
             if (playerMovement == null || shootScript == null || playerHealth == null)
             {
                 Debug.LogError("Player is missing necessary components: " +
@@ -65,6 +64,19 @@ public class UIManager : MonoBehaviour
         }
 
         playerXP = GameObject.FindWithTag("XPManager")?.GetComponent<XPManager>();
+
+        // Ensure bullet damage is set to 25 at the start
+        if (shootScript != null)
+        {
+            foreach (var shoot in shootScript.GetComponentsInChildren<Shoot>())
+            {
+                var bullet = shoot.bullet.GetComponent<Bullet>();
+                if (bullet != null)
+                {
+                    bullet.damage = 25f; // Set the initial damage value to 25
+                }
+            }
+        }
     }
 
     private void Update()
@@ -74,11 +86,19 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        healthBar.fillAmount = playerHealth.maxHealth > 0 ? playerHealth.currentHealth / playerHealth.maxHealth : 0;
-        healthText.text = Mathf.RoundToInt(playerHealth.currentHealth).ToString();
-        xpBar.fillAmount = playerXP.currentXP > 0 ? playerXP.currentXP / playerXP.xpToNextLevel : 0;
-        xpText.text = Mathf.RoundToInt(playerXP.currentXP).ToString();
-        levelText.text = Mathf.RoundToInt(playerXP.level).ToString();
+        if (playerHealth != null)
+        {
+            healthBar.fillAmount = playerHealth.maxHealth > 0 ? playerHealth.currentHealth / playerHealth.maxHealth : 0;
+            healthText.text = Mathf.RoundToInt(playerHealth.currentHealth).ToString();
+        }
+
+        if (playerXP != null)
+        {
+            xpBar.fillAmount = playerXP.xpToNextLevel > 0 ? playerXP.currentXP / playerXP.xpToNextLevel : 0;
+            xpText.text = Mathf.RoundToInt(playerXP.currentXP).ToString();
+            levelText.text = playerXP.level.ToString();
+            skillPointsText.text = "Skill Points: " + playerXP.skillPoints;
+        }
     }
 
     public void ShowUpgrades()
@@ -117,25 +137,54 @@ public class UIManager : MonoBehaviour
         pauseCoroutine = null;
     }
 
+    // Check if the player can spend skill point
+    private bool TrySpendSkillPoint()
+    {
+        if (playerXP != null && playerXP.skillPoints > 0)
+        {
+            playerXP.BuyUpgrade();
+            return true;
+        }
+
+        Debug.Log("Not enough skill points.");
+        return false;
+    }
+
+    private void IncrementUpgradeCounter(int index)
+    {
+        if (index >= 0 && index < upgradeCounters.Length)
+        {
+            int currentCount = int.Parse(upgradeCounters[index].text);
+            currentCount++;
+            upgradeCounters[index].text = currentCount.ToString();
+        }
+    }
+
     // Upgrade functions
     public void UpgradeDamage()
     {
+        if (!TrySpendSkillPoint()) return;
+
         if (shootScript != null)
         {
             foreach (var shoot in shootScript.GetComponentsInChildren<Shoot>())
             {
-                var bulletPrefab = shoot.bullet.GetComponent<bullet>();
-                bulletPrefab.damage += 30f; // Increase base damage
+                var bulletPrefab = shoot.bullet.GetComponent<Bullet>();
+                bulletPrefab.damage += 30f;
             }
         }
         else
         {
             Debug.LogError("Shoot script not found on player.");
         }
+
+        IncrementUpgradeCounter(0);
     }
 
     public void UpgradeSpeed()
     {
+        if (!TrySpendSkillPoint()) return;
+
         if (playerMovement != null)
         {
             playerMovement.playerSpeed += 5f;
@@ -144,25 +193,33 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogError("PlayerMovement script not found on player.");
         }
+
+        IncrementUpgradeCounter(1);
     }
 
     public void UpgradeFireRate()
     {
+        if (!TrySpendSkillPoint()) return;
+
         if (shootScript != null)
         {
             foreach (var shoot in shootScript.GetComponentsInChildren<Shoot>())
             {
-                shoot.fireRate = Mathf.Max(0.05f, shoot.fireRate - 0.03f); // Decrease interval to shoot faster
+                shoot.fireRate -= 0.125f;
             }
         }
         else
         {
             Debug.LogError("Shoot script not found on player.");
         }
+
+        IncrementUpgradeCounter(2);
     }
 
     public void UpgradeHealth()
     {
+        if (!TrySpendSkillPoint()) return;
+
         if (playerHealth != null)
         {
             playerHealth.maxHealth += 20f;
@@ -172,18 +229,23 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogError("Health script not found on player.");
         }
+
+        IncrementUpgradeCounter(3);
     }
 
     public void UpgradeHealthRegen()
     {
+        if (!TrySpendSkillPoint()) return;
+
         if (playerHealth != null)
         {
-            playerHealth.healthRegen += 0.5f;
+            playerHealth.healthRegen += 1f;
         }
         else
         {
             Debug.LogError("Health script not found on player.");
         }
+
+        IncrementUpgradeCounter(4);
     }
 }
-

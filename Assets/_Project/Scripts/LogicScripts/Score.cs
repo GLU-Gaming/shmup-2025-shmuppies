@@ -12,6 +12,6 @@ public class ScoreManager : MonoBehaviour
         score += 10 * Time.deltaTime;
 
         // Update the score text with the current score (formatted to 2 decimal places)
-        scoreText.text = score.ToString("F0");
+        scoreText.text = "Score: " + score.ToString("F0");
     }
 }

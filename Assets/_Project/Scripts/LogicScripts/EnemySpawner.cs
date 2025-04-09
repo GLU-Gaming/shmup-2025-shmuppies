@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawning")]
     public int minEnemiesSpawned = 1;
     public int maxEnemiesSpawned = 3;
-    public float spawnInterval = 2f;
+    public float spawnInterval = 2f; // Initial spawn interval
     public float bossCounter = 0f;
     public float bossSpawnTime = 10f;
 
@@ -23,6 +23,9 @@ public class EnemySpawner : MonoBehaviour
     public int currentEnemyCount = 0;
     public int startMaxEnemyCount = 5;
     public int maxEnemyCount = 10;
+
+    private float spawnIntervalDecrementRate = 0.1f; // How much to decrease spawn interval every spawn cycle
+    private bool bossSpawned = false; // Track if the boss has been spawned
 
     private void Start()
     {
@@ -32,11 +35,16 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        bossCounter += Time.deltaTime;
-
-        if (bossCounter > bossSpawnTime)
+        if (!bossSpawned) // Check if the boss has already been spawned
         {
-            Instantiate(bossPrefab, bossSpawnPoint);
+            bossCounter += Time.deltaTime;
+
+            if (bossCounter > bossSpawnTime)
+            {
+                Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity); // Instantiate at the boss spawn point
+                bossSpawned = true; // Mark the boss as spawned
+                bossCounter = 0f; // Reset the boss spawn counter
+            }
         }
     }
 
@@ -50,12 +58,16 @@ public class EnemySpawner : MonoBehaviour
                 if (currentEnemyCount >= maxEnemyCount) break;
                 SpawnEnemy();
             }
+
+            // Gradually decrease the spawn interval over time
+            spawnInterval = Mathf.Max(0.5f, spawnInterval - spawnIntervalDecrementRate); // Ensure spawn interval doesn’t go below 0.5s
+            CancelInvoke(nameof(SpawnWave)); // Cancel the current repeating call
+            InvokeRepeating(nameof(SpawnWave), spawnInterval, spawnInterval); // Re-invoke with the new faster interval
         }
     }
 
     private void SpawnEnemy()
     {
-
         Vector3 spawnPosition;
         do
         {

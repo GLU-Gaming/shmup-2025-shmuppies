@@ -82,18 +82,39 @@ public class Health : MonoBehaviour
 
     private void EnemyDeath()
     {
-        EnemyBase enemyScript = GetComponent<EnemyBase>();
-        if (enemyScript != null)
+        // Check if the enemy is the boss
+        if (CompareTag("Boss"))
         {
-            XPManager.instance.AddXP(enemyScript.xpDropped);
+            BossDeath(); // Call BossDeath if the enemy is the boss
         }
-
-        if (spawnerScript != null)
+        else
         {
-            spawnerScript.currentEnemyCount--;
-        }
+            EnemyBase enemyScript = GetComponent<EnemyBase>();
+            if (enemyScript != null)
+            {
+                XPManager.instance.AddXP(enemyScript.xpDropped);
+            }
 
-        Destroy(gameObject);
+            if (spawnerScript != null)
+            {
+                spawnerScript.currentEnemyCount--;
+            }
+
+            Destroy(gameObject);
+        }
+    }
+
+    private void BossDeath()
+    {
+        // Logic to handle boss death
+        Debug.Log("The boss has been defeated!");
+
+        // Example: Load a victory scene or trigger a special event
+        SceneManager.LoadScene("VictoryScene"); // Replace with your victory scene name or actions
+
+        // Optionally, disable the boss-related objects or gameplay elements
+        // Example: Disable the boss game object to prevent further actions
+        gameObject.SetActive(false);
     }
 
     private void PlayerDeath()

@@ -27,9 +27,8 @@ public class XPManager : MonoBehaviour
         while (currentXP >= xpToNextLevel)
         {
             currentXP -= xpToNextLevel;
-            level++;
-            xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.2f); // Increase required XP each level
-            Debug.Log("Leveled up! New level: " + level);
+            LevelUp();
+
         }
     }
 
@@ -37,6 +36,7 @@ public class XPManager : MonoBehaviour
     {
         level++;
         skillPoints += 2;
+        xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.2f); // Increase required XP each level
     }
 
     public void BuyUpgrade()
