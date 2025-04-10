@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      polenhut_0: -424404447486376030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
